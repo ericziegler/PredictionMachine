@@ -12,11 +12,61 @@ class GamesViewModel {
     // MARK: - Properties
     
     private let week: Week?
+    private var predictions = [String : Prediction]()
     
     // MARK: - Init
     
     init(week: Week? = nil) {
         self.week = week
+        loadPredictions()
+    }
+    
+    // MARK: - Loading / Saving
+    
+    private func loadPredictions() {
+        guard let week = week else {
+            return
+        }
+        
+        for curGame in week.games {
+            // cacheKey is [weekNumber]-[visiting]-[home]
+            let cacheKey = "\(week.number)-\(curGame.predictionKey)"
+            let prediction = loadCachedPrediction(key: cacheKey)
+            predictions[curGame.predictionKey] = prediction
+        }
+    }
+    
+    private func loadCachedPrediction(key: String) -> Prediction {
+        let defaults = UserDefaults.standard
+        if let predictionData = defaults.object(forKey: key) as? Data {
+            let decoder = JSONDecoder()
+            if let loadedPrediction = try? decoder.decode(Prediction.self, from: predictionData) {
+                return loadedPrediction
+            }
+        }
+        return Prediction()
+    }
+    
+    private func savePredictions() {
+        guard let week = week else {
+            return
+        }
+        
+        for curGame in week.games {
+            if let prediction = predictions[curGame.predictionKey] {
+                // cacheKey is [weekNumber]-[visiting]-[home]
+                let cacheKey = "\(week.number)-\(curGame.predictionKey)"
+                saveCachedPrediction(prediction, forKey: cacheKey)
+            }
+        }
+    }
+    
+    private func saveCachedPrediction(_ prediction: Prediction, forKey key: String) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(prediction) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: key)
+        }
     }
     
     // MARK: - Accessors
@@ -46,38 +96,48 @@ class GamesViewModel {
     }
     
     func prediction(for index: Int) -> Prediction? {
-        guard let game = game(at: index) else {
+        guard let game = game(at: index), let prediction = prediction(for: game) else {
             return nil
         }
         
+        return prediction
+    }
+    
+    private func prediction(for game: Game) -> Prediction? {
+        let prediction = predictions[game.predictionKey]
+        return prediction
+    }
+    
+    private func updatePrediction(_ prediction: Prediction, game: Game) {
         var winningTeam: Team?
+        var losingTeam: Team?
         var countDiff: Int?
         var confidence: Double?
         
-        if game.visitorCount > game.homeCount {
+        if prediction.visitorCount > prediction.homeCount {
             // visitor should win
             winningTeam = game.visitor
-            countDiff = game.visitorCount - game.homeCount
+            losingTeam = game.home
+            countDiff = prediction.visitorCount - prediction.homeCount
         }
-        else if game.homeCount > game.visitorCount {
+        else if prediction.homeCount > prediction.visitorCount {
             // home should win
             winningTeam = game.home
-            countDiff = game.homeCount - game.visitorCount
+            losingTeam = game.visitor
+            countDiff = prediction.homeCount - prediction.visitorCount
         }
         
         // calculate the percent confident
-        
-        let totalCount = game.visitorCount + game.homeCount
+        let totalCount = prediction.visitorCount + prediction.homeCount
         if let countDiff = countDiff, totalCount > 0 {
             confidence = Double(countDiff) / Double(totalCount)
         }
         
-        if let winningTeam = winningTeam, let confidence = confidence {
-            let prediction = Prediction(team: winningTeam, confidence: confidence)
-            return prediction
-        }
+        prediction.winningTeam = winningTeam
+        prediction.losingTeam = losingTeam
+        prediction.confidence = confidence
         
-        return nil
+        savePredictions()
     }
     
     func gameName(at index: Int) -> String? {
@@ -89,38 +149,46 @@ class GamesViewModel {
         return "\(game.visitor.location) at \(game.home.location)"
     }
     
+    // MARK: - Update Picks
+    
     func addPicks(for game: Game, isVisitor: Bool, count: Int) {
-        if isVisitor {
-            game.visitorCount += count
-        } else {
-            game.homeCount += count
-        }
-    }
-    
-    func removePicks(for game: Game, isVisitor: Bool, count: Int) {
-        if isVisitor {
-            game.visitorCount -= count
-            if game.visitorCount < 0 {
-                game.visitorCount = 0
-            }
-        } else {
-            game.homeCount -= count
-            if game.homeCount < 0 {
-                game.homeCount = 0
-            }
-        }
-    }
-    
-    // MARK: - Reset
-    
-    func resetAllGames() {
-        guard let week = self.week else {
+        guard let prediction = prediction(for: game) else {
             return
         }
         
-        for curGame in week.games {
-            curGame.visitorCount = 0
-            curGame.homeCount = 0
+        if isVisitor {
+            prediction.visitorCount += count
+        } else {
+            prediction.homeCount += count
+        }
+        
+        updatePrediction(prediction, game: game)
+    }
+    
+    func removePicks(for game: Game, isVisitor: Bool, count: Int) {
+        guard let prediction = prediction(for: game) else {
+            return
+        }
+        
+        if isVisitor {
+            prediction.visitorCount -= count
+            if prediction.visitorCount < 0 {
+                prediction.visitorCount = 0
+            }
+        } else {
+            prediction.homeCount -= count
+            if prediction.homeCount < 0 {
+                prediction.homeCount = 0
+            }
+        }
+        
+        updatePrediction(prediction, game: game)
+    }
+    
+    func resetAllGames() {
+        for (_, curPrediction) in predictions {
+            curPrediction.visitorCount = 0
+            curPrediction.homeCount = 0
         }
     }
     

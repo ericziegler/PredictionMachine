@@ -89,11 +89,11 @@ class GamesViewController: BaseViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let game = viewModel.game(at: indexPath.section) else {
+        guard let game = viewModel.game(at: indexPath.section), let prediction = viewModel.prediction(for: indexPath.section) else {
             return
         }
         
-        showAlert(title: "Game Details", message: "\(game.visitor.name): \(game.visitorCount)\n\(game.home.name): \(game.homeCount)")
+        showAlert(title: "Game Details", message: "\(game.visitor.name): \(prediction.visitorCount)\n\(game.home.name): \(prediction.homeCount)")
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -135,7 +135,6 @@ class GamesViewController: BaseViewController, UITableViewDataSource, UITableVie
     private func showInputForGame(_ game: Game, isVisitor: Bool, index: Int, isAdding: Bool) {
         DispatchQueue.main.async {
             let title = isAdding ? "Add Picks" : "Remove Picks"
-            let count = (isVisitor == true) ? game.visitorCount : game.homeCount
             let controller = NumberInputViewController.createController(with: nil, placeholder: "Number of picks", isCurrency: false, isDecimal: false, title: title)
             controller.inputSavedBlock = { pickCount in
                 if isAdding {

@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct Prediction {
-    let team: Team
-    let confidence: Double
+class Prediction: Codable {
+    var winningTeam: Team?
+    var losingTeam: Team?
+    var confidence: Double?
+    var homeCount: Int = 0
+    var visitorCount: Int = 0
 }

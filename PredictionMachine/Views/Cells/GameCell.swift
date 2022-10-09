@@ -36,16 +36,16 @@ class GameCell: UITableViewCell {
         homeButton.setImage(UIImage(named: game.home.image), for: .normal)
         
         // prediction
-        if let prediction = prediction {
+        if let prediction = prediction, let winningTeam = prediction.winningTeam, let confidence = prediction.confidence {
             // team
-            predictionImageView.image = UIImage(named: prediction.team.image)
-            predictionLabel.text = "Prediction: \(prediction.team.name)"
+            predictionImageView.image = UIImage(named: winningTeam.image)
+            predictionLabel.text = "Prediction: \(winningTeam.name)"
             
             // percent confident
             let formatter = NumberFormatter()
             formatter.numberStyle = .percent
             formatter.maximumFractionDigits = 0
-            confidenceLabel.text = "Confidence: \(formatter.string(from: NSNumber(value: prediction.confidence)) ?? "--")"
+            confidenceLabel.text = "Confidence: \(formatter.string(from: NSNumber(value: confidence)) ?? "--")"
         } else {
             predictionImageView.image = nil
             predictionLabel.text = "Prediction: --"
