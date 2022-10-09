@@ -1,0 +1,73 @@
+{
+    "weeks": [
+        {
+            "number": 5,
+            "games": [
+                {
+                    "visitor": "IND",
+                    "home": "DEN",
+                },
+                {
+                    "visitor": "GB",
+                    "home": "NYG",
+                },
+                {
+                    "visitor": "CHI",
+                    "home": "MIN",
+                },
+                {
+                    "visitor": "MIA",
+                    "home": "NYJ",
+                },
+                {
+                    "visitor": "SEA",
+                    "home": "NO",
+                },
+                {
+                    "visitor": "TEN",
+                    "home": "WSH",
+                },
+                {
+                    "visitor": "PIT",
+                    "home": "BUF",
+                },
+                {
+                    "visitor": "DET",
+                    "home": "NE",
+                },
+                {
+                    "visitor": "HOU",
+                    "home": "JAX",
+                },
+                {
+                    "visitor": "LAC",
+                    "home": "CLE",
+                },
+                {
+                    "visitor": "ATL",
+                    "home": "TB",
+                },
+                {
+                    "visitor": "SF",
+                    "home": "CAR",
+                },
+                {
+                    "visitor": "PHI",
+                    "home": "ARI",
+                },
+                {
+                    "visitor": "DAL",
+                    "home": "LAR",
+                },
+                {
+                    "visitor": "CIN",
+                    "home": "BAL",
+                },
+                {
+                    "visitor": "LV",
+                    "home": "KC",
+                }
+            ]
+        }
+    ]
+}

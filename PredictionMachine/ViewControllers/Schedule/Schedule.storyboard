@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Schedule View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ScheduleViewId" id="Y6W-OH-hqX" customClass="ScheduleViewController" customModule="PredictionMachine" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Nyx-FV-YtA">
+                                <rect key="frame" x="0.0" y="47" width="390" height="763"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="WeekCellId" id="VHu-Hr-Ey5" customClass="WeekCell" customModule="PredictionMachine" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="390" height="56.333332061767578"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VHu-Hr-Ey5" id="ZTc-dh-17P">
+                                            <rect key="frame" x="0.0" y="0.0" width="359.66666666666669" height="56.333332061767578"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5M-9M-dAn" customClass="RegularLabel" customModule="PredictionMachine" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="15.999999999999998" width="327.66666666666669" height="24.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="G5M-9M-dAn" firstAttribute="leading" secondItem="ZTc-dh-17P" secondAttribute="leading" constant="16" id="BLh-uM-cwZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="G5M-9M-dAn" secondAttribute="trailing" constant="16" id="axf-7i-IEk"/>
+                                                <constraint firstItem="G5M-9M-dAn" firstAttribute="top" secondItem="ZTc-dh-17P" secondAttribute="top" constant="16" id="dUg-Bo-S9r"/>
+                                                <constraint firstAttribute="bottom" secondItem="G5M-9M-dAn" secondAttribute="bottom" constant="16" id="sDF-fK-Xbz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="G5M-9M-dAn" id="pxZ-8d-TUt"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="qZy-Un-sIe"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="ytp-ea-udo"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Nyx-FV-YtA" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="7Ub-zf-hpT"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Nyx-FV-YtA" secondAttribute="trailing" id="8zq-pA-Gsq"/>
+                            <constraint firstItem="Nyx-FV-YtA" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Wmn-MO-K6b"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Nyx-FV-YtA" secondAttribute="bottom" id="tHh-Ep-M1p"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scheduleTable" destination="Nyx-FV-YtA" id="cgv-I9-D93"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="19"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

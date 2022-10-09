@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Number Input View Controller-->
+        <scene sceneID="rAg-Nt-3qb">
+            <objects>
+                <viewController storyboardIdentifier="NumberInputViewId" id="Sxe-79-C95" customClass="NumberInputViewController" customModule="Decantable" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z5f-G1-1d2">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ds-J2-Z7L">
+                                <rect key="frame" x="64" y="197" width="296" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="rlq-3Q-3xY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="42"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" systemColor="placeholderTextColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="Sxe-79-C95" id="wsg-rz-xyn"/>
+                                </connections>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Rw-pg-X1W" userLabel="Separator">
+                                <rect key="frame" x="64" y="261" width="296" height="1"/>
+                                <color key="backgroundColor" systemColor="separatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="5qC-im-U4c"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3o6-u0-OAa" customClass="ActionButton" customModule="Decantable" customModuleProvider="target">
+                                <rect key="frame" x="45" y="325" width="300" height="44"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="OSm-Kf-Aux"/>
+                                    <constraint firstAttribute="height" constant="44" id="zNn-Tw-E6g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="filled" title="Save">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="saveTapped:" destination="Sxe-79-C95" eventType="touchUpInside" id="ZRx-9p-oMw"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lt7-e7-9QQ" customClass="LightLabel" customModule="Decantable" customModuleProvider="target">
+                                <rect key="frame" x="20" y="187.66666666666666" width="44" height="82.999999999999972"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="UUQ-HW-hBi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="70"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WYr-KL-myz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3o6-u0-OAa" firstAttribute="top" secondItem="4Ds-J2-Z7L" secondAttribute="bottom" constant="64" id="0D3-1e-x1j"/>
+                            <constraint firstItem="9Rw-pg-X1W" firstAttribute="leading" secondItem="4Ds-J2-Z7L" secondAttribute="leading" id="0af-ua-GyK"/>
+                            <constraint firstItem="9Rw-pg-X1W" firstAttribute="top" secondItem="4Ds-J2-Z7L" secondAttribute="bottom" id="0tQ-BB-VO4"/>
+                            <constraint firstItem="lt7-e7-9QQ" firstAttribute="centerY" secondItem="4Ds-J2-Z7L" secondAttribute="centerY" id="73X-D4-JVQ"/>
+                            <constraint firstItem="4Ds-J2-Z7L" firstAttribute="leading" secondItem="lt7-e7-9QQ" secondAttribute="trailing" id="HAq-0f-f6p"/>
+                            <constraint firstItem="WYr-KL-myz" firstAttribute="trailing" secondItem="4Ds-J2-Z7L" secondAttribute="trailing" constant="30" id="OrQ-W8-xjX"/>
+                            <constraint firstItem="lt7-e7-9QQ" firstAttribute="leading" secondItem="WYr-KL-myz" secondAttribute="leading" constant="20" id="bVo-pL-0mk"/>
+                            <constraint firstItem="4Ds-J2-Z7L" firstAttribute="top" secondItem="WYr-KL-myz" secondAttribute="top" constant="150" id="eeS-6Z-hDY"/>
+                            <constraint firstItem="3o6-u0-OAa" firstAttribute="centerX" secondItem="WYr-KL-myz" secondAttribute="centerX" id="mtU-pV-jOp"/>
+                            <constraint firstItem="9Rw-pg-X1W" firstAttribute="trailing" secondItem="4Ds-J2-Z7L" secondAttribute="trailing" id="zyx-Kp-BrJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="currencyLabel" destination="lt7-e7-9QQ" id="t3r-dJ-hpJ"/>
+                        <outlet property="currencyWidthConstraint" destination="UUQ-HW-hBi" id="IKm-7r-EJ3"/>
+                        <outlet property="inputField" destination="4Ds-J2-Z7L" id="3U0-eN-vht"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gwI-TU-Udq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="80" y="61"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.41960784313725491" green="0.8784313725490196" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
