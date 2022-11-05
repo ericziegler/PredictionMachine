@@ -68,6 +68,250 @@
                     "home": "KC",
                 }
             ]
+        },
+        {
+            "number": 6,
+            "games": [
+                {
+                    "visitor": "WSH",
+                    "home": "CHI",
+                },
+                {
+                    "visitor": "MIN",
+                    "home": "MIA",
+                },
+                {
+                    "visitor": "NYJ",
+                    "home": "GB",
+                },
+                {
+                    "visitor": "SF",
+                    "home": "ATL",
+                },
+                {
+                    "visitor": "TB",
+                    "home": "PIT",
+                },
+                {
+                    "visitor": "NE",
+                    "home": "CLE",
+                },
+                {
+                    "visitor": "BAL",
+                    "home": "NYG",
+                },
+                {
+                    "visitor": "CIN",
+                    "home": "NO",
+                },
+                {
+                    "visitor": "JAX",
+                    "home": "IND",
+                },
+                {
+                    "visitor": "ARI",
+                    "home": "SEA",
+                },
+                {
+                    "visitor": "CAR",
+                    "home": "LAR",
+                },
+                {
+                    "visitor": "BUF",
+                    "home": "KC",
+                },
+                {
+                    "visitor": "DAL",
+                    "home": "PHI",
+                },
+                {
+                    "visitor": "DEN",
+                    "home": "LAC",
+                }
+            ]
+        },
+        {
+            "number": 7,
+            "games": [
+                {
+                    "visitor": "NO",
+                    "home": "ARI",
+                },
+                {
+                    "visitor": "IND",
+                    "home": "TEN",
+                },
+                {
+                    "visitor": "TB",
+                    "home": "CAR",
+                },
+                {
+                    "visitor": "GB",
+                    "home": "WSH",
+                },
+                {
+                    "visitor": "NYG",
+                    "home": "JAX",
+                },
+                {
+                    "visitor": "ATL",
+                    "home": "CIN",
+                },
+                {
+                    "visitor": "CLE",
+                    "home": "BAL",
+                },
+                {
+                    "visitor": "DET",
+                    "home": "DAL",
+                },
+                {
+                    "visitor": "NYJ",
+                    "home": "DEN",
+                },
+                {
+                    "visitor": "HOU",
+                    "home": "LV",
+                },
+                {
+                    "visitor": "SEA",
+                    "home": "LAC",
+                },
+                {
+                    "visitor": "KC",
+                    "home": "SF",
+                },
+                {
+                    "visitor": "PIT",
+                    "home": "MIA",
+                },
+                {
+                    "visitor": "CHI",
+                    "home": "NE",
+                }
+            ]
+        },
+        {
+            "number": 8,
+            "games": [
+                {
+                    "visitor": "BAL",
+                    "home": "TB",
+                },
+                {
+                    "visitor": "DEN",
+                    "home": "JAX",
+                },
+                {
+                    "visitor": "CAR",
+                    "home": "ATL",
+                },
+                {
+                    "visitor": "CHI",
+                    "home": "DAL",
+                },
+                {
+                    "visitor": "MIA",
+                    "home": "DET",
+                },
+                {
+                    "visitor": "ARI",
+                    "home": "MIN",
+                },
+                {
+                    "visitor": "LV",
+                    "home": "NO",
+                },
+                {
+                    "visitor": "NE",
+                    "home": "NYJ",
+                },
+                {
+                    "visitor": "PIT",
+                    "home": "PHI",
+                },
+                {
+                    "visitor": "TEN",
+                    "home": "HOU",
+                },
+                {
+                    "visitor": "WSH",
+                    "home": "IND",
+                },
+                {
+                    "visitor": "SF",
+                    "home": "LAR",
+                },
+                {
+                    "visitor": "NYG",
+                    "home": "SEA",
+                },
+                {
+                    "visitor": "GB",
+                    "home": "BUF",
+                },
+                {
+                    "visitor": "CIN",
+                    "home": "CLE",
+                }
+            ]
+        },
+        {
+            "number": 9,
+            "games": [
+                {
+                    "visitor": "PHI",
+                    "home": "HOU",
+                },
+                {
+                    "visitor": "LV",
+                    "home": "JAX",
+                },
+                {
+                    "visitor": "GB",
+                    "home": "DET",
+                },
+                {
+                    "visitor": "LAC",
+                    "home": "ATL",
+                },
+                {
+                    "visitor": "MIA",
+                    "home": "CHI",
+                },
+                {
+                    "visitor": "BUF",
+                    "home": "NYJ",
+                },
+                {
+                    "visitor": "CAR",
+                    "home": "CIN",
+                },
+                {
+                    "visitor": "IND",
+                    "home": "NE",
+                },
+                {
+                    "visitor": "MIN",
+                    "home": "WSH",
+                },
+                {
+                    "visitor": "SEA",
+                    "home": "ARI",
+                },
+                {
+                    "visitor": "LAR",
+                    "home": "TB",
+                },
+                {
+                    "visitor": "TEN",
+                    "home": "KC",
+                },
+                {
+                    "visitor": "BAL",
+                    "home": "NO",
+                }
+            ]
         }
     ]
 }

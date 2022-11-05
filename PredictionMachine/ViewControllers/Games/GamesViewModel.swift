@@ -8,17 +8,27 @@
 import Foundation
 
 class GamesViewModel {
+    
+    // MARK: - Enums
+    
+    enum SortType {
+        case defaultSort
+        case highestConfidence
+    }
  
     // MARK: - Properties
     
     private let week: Week?
     private var predictions = [String : Prediction]()
+    private var sortedGames = [Game]()
+    var curSort = SortType.defaultSort
     
     // MARK: - Init
     
     init(week: Week? = nil) {
         self.week = week
         loadPredictions()
+        sortGames()
     }
     
     // MARK: - Loading / Saving
@@ -69,6 +79,26 @@ class GamesViewModel {
         }
     }
     
+    // MARK: - Sorting
+    
+    func sortGames() {
+        guard let week = self.week else {
+            return
+        }
+        
+        if curSort == .defaultSort {
+            sortedGames = week.games
+        } else {
+            sortedGames = week.games.sorted(by: {
+                if prediction(for: $0)?.confidence ?? Double(0) > prediction(for: $1)?.confidence ?? Double(0) {
+                    return true
+                } else {
+                    return false
+                }
+            })
+        }
+    }
+    
     // MARK: - Accessors
     
     var formattedWeekNumber: String {
@@ -80,19 +110,15 @@ class GamesViewModel {
     }
     
     var gameCount: Int {
-        guard let week = self.week else {
-            return 0
-        }
-        
-        return week.games.count
+        return sortedGames.count
     }
     
     func game(at index: Int) -> Game? {
-        guard let week = self.week, index < week.games.count else {
+        guard index < sortedGames.count else {
             return nil
         }
         
-        return week.games[index]
+        return sortedGames[index]
     }
     
     func prediction(for index: Int) -> Prediction? {
@@ -141,11 +167,11 @@ class GamesViewModel {
     }
     
     func gameName(at index: Int) -> String? {
-        guard let week = self.week, index < week.games.count else {
+        guard index < sortedGames.count else {
             return nil
         }
         
-        let game = week.games[index]
+        let game = sortedGames[index]
         return "\(game.visitor.location) at \(game.home.location)"
     }
     
@@ -186,9 +212,16 @@ class GamesViewModel {
     }
     
     func resetAllGames() {
-        for (_, curPrediction) in predictions {
-            curPrediction.visitorCount = 0
-            curPrediction.homeCount = 0
+        guard let week = self.week else {
+            return
+        }
+        
+        for curGame in week.games {
+            if let curPrediction = prediction(for: curGame) {
+                curPrediction.visitorCount = 0
+                curPrediction.homeCount = 0
+                updatePrediction(curPrediction, game: curGame)
+            }
         }
     }
     

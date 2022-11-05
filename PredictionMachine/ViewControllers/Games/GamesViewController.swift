@@ -30,33 +30,53 @@ class GamesViewController: BaseViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        setupTable()
     }
     
     private func setupNavBar() {
         self.navigationItem.title = viewModel.formattedWeekNumber
         
-        let resetItem = UIBarButtonItem(title: "Reset", style: .done, target: self, action: #selector(resetGamesTapped(_:)))
-        self.navigationItem.rightBarButtonItem = resetItem
+        let sortImage = UIImage(systemName: "arrow.up.arrow.down", withConfiguration: UIImage.SymbolConfiguration(scale: .medium))?.maskedWithColor(UIColor.white)
+        let sortButton = RegularButton(type: .custom)
+        sortButton.addTarget(self, action: #selector(self.sortGamesTapped(_:)), for: .touchUpInside)
+        sortButton.setImage(sortImage, for: .normal)
+        sortButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        let sortItem = UIBarButtonItem(customView: sortButton)
+        self.navigationItem.rightBarButtonItem = sortItem
+    }
+    
+    private func setupTable() {
+        gamesTable.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: -16, right: 0)
     }
     
     // MARK: - Actions
     
-    @objc func resetGamesTapped(_ sender: AnyObject) {
-        let alert = UIAlertController(title: "Reset All Games", message: "Are you sure you want to reset all game pick counts?", preferredStyle: .alert)
-        let resetAction = UIAlertAction(title: "Reset", style: .destructive) { action in
-            self.resetAllGames()
+    @objc func sortGamesTapped(_ sender: AnyObject) {
+        let actionSheet = UIAlertController(title: "Sort Games", message: nil, preferredStyle: .actionSheet)
+        let defaultAction = UIAlertAction(title: "Default", style: .default) { action in
+            self.viewModel.curSort = .defaultSort
+            self.viewModel.sortGames()
+            DispatchQueue.main.async {
+                self.gamesTable.reloadData()
+            }
         }
-        alert.addAction(resetAction)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        DispatchQueue.main.async {
-            self.present(alert, animated: true)
+        actionSheet.addAction(defaultAction)
+        let confidenceAction = UIAlertAction(title: "Highest Confidence", style: .default) { action in
+            self.viewModel.curSort = .highestConfidence
+            self.viewModel.sortGames()
+            DispatchQueue.main.async {
+                self.gamesTable.reloadData()
+            }
         }
+        actionSheet.addAction(confidenceAction)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(actionSheet, animated: true)
     }
     
     // MARK: - UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.gameCount
+        return viewModel.gameCount + 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,18 +84,26 @@ class GamesViewController: BaseViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: GameCell.reuseId, for: indexPath) as! GameCell
-        if let game = viewModel.game(at: indexPath.section) {
-            let prediction = viewModel.prediction(for: indexPath.section)
-            cell.layout(for: game, prediction: prediction)
-            cell.homeTapped = {
-                self.showInputForGame(game, isVisitor: false, index: indexPath.section, isAdding: true)
+        if indexPath.section < viewModel.gameCount {
+            let cell = tableView.dequeueReusableCell(withIdentifier: GameCell.reuseId, for: indexPath) as! GameCell
+            if let game = viewModel.game(at: indexPath.section) {
+                let prediction = viewModel.prediction(for: indexPath.section)
+                cell.layout(for: game, prediction: prediction)
+                cell.homeTapped = {
+                    self.showInputForGame(game, isVisitor: false, index: indexPath.section, isAdding: true)
+                }
+                cell.visitorTapped = {
+                    self.showInputForGame(game, isVisitor: true, index: indexPath.section, isAdding: true)
+                }
             }
-            cell.visitorTapped = {
-                self.showInputForGame(game, isVisitor: true, index: indexPath.section, isAdding: true)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ResetCell.reuseId, for: indexPath) as! ResetCell
+            cell.resetAllTapped = {
+                self.promptResetAllGames()
             }
+            return cell
         }
-        return cell
     }
     
     // MARK: - UITableViewDelegate
@@ -97,6 +125,10 @@ class GamesViewController: BaseViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if indexPath.section >= viewModel.gameCount {
+            return nil
+        }
+        
         let removeAction = UIContextualAction(style: .normal, title: "Remove Picks") { (action, view, completion) in
             if let game = self.viewModel.game(at: indexPath.section) {
                 self.showInputForGame(game, isVisitor: true, index: indexPath.section, isAdding: false)
@@ -114,6 +146,10 @@ class GamesViewController: BaseViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if indexPath.section >= viewModel.gameCount {
+            return nil
+        }
+        
         let removeAction = UIContextualAction(style: .normal, title: "Remove Picks") { (action, view, completion) in
             if let game = self.viewModel.game(at: indexPath.section) {
                 self.showInputForGame(game, isVisitor: true, index: indexPath.section, isAdding: false)
@@ -146,6 +182,18 @@ class GamesViewController: BaseViewController, UITableViewDataSource, UITableVie
             }
             let navController = BaseNavigationController(rootViewController: controller)
             self.present(navController, animated: true)
+        }
+    }
+    
+    private func promptResetAllGames() {
+        let alert = UIAlertController(title: "Reset All Games", message: "Are you sure you want to reset all game pick counts?", preferredStyle: .alert)
+        let resetAction = UIAlertAction(title: "Reset", style: .destructive) { action in
+            self.resetAllGames()
+        }
+        alert.addAction(resetAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
         }
     }
     

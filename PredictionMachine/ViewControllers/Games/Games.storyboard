@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_0" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -18,32 +18,32 @@
             <objects>
                 <viewController storyboardIdentifier="GamesViewId" id="Y6W-OH-hqX" customClass="GamesViewController" customModule="PredictionMachine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eNr-Df-buN">
-                                <rect key="frame" x="0.0" y="47" width="390" height="763"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GameCellId" id="kL0-lG-blX" customClass="GameCell" customModule="PredictionMachine" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333332061767578" width="390" height="98.333335876464844"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="98.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kL0-lG-blX" id="0ii-nW-iR6">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="98.333335876464844"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="98.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRi-0z-zDv">
-                                                    <rect key="frame" x="0.0" y="64" width="390" height="34.333333333333343"/>
+                                                    <rect key="frame" x="0.0" y="64" width="414" height="34.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prediction: Bengals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wg-E9-nlR" customClass="MediumLabel" customModule="PredictionMachine" customModuleProvider="target">
-                                                            <rect key="frame" x="8" y="7.3333333333333286" width="216" height="20"/>
+                                                            <rect key="frame" x="8" y="7.5" width="240" height="20"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confidence: 100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofT-My-TOZ" customClass="MediumLabel" customModule="PredictionMachine" customModuleProvider="target">
-                                                            <rect key="frame" x="232" y="7.3333333333333286" width="150" height="20"/>
+                                                            <rect key="frame" x="256" y="7.5" width="150" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="150" id="EF3-rp-3LT"/>
                                                             </constraints>
@@ -63,7 +63,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ekv-jJ-ugd">
-                                                    <rect key="frame" x="163" y="0.0" width="64" height="64"/>
+                                                    <rect key="frame" x="175" y="0.0" width="64" height="64"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CIN" translatesAutoresizingMaskIntoConstraints="NO" id="6rE-d0-iu4">
                                                             <rect key="frame" x="0.0" y="16" width="64" height="48"/>
@@ -80,10 +80,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqJ-k7-w0D">
-                                                    <rect key="frame" x="0.0" y="0.0" width="163" height="64"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="175" height="64"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCC-a5-jpm" customClass="RegularButton" customModule="PredictionMachine" customModuleProvider="target">
-                                                            <rect key="frame" x="49.666666666666657" y="0.0" width="64" height="64"/>
+                                                            <rect key="frame" x="55.5" y="0.0" width="64" height="64"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="uCC-a5-jpm" secondAttribute="height" multiplier="1:1" id="dR9-VG-qft"/>
                                                             </constraints>
@@ -102,10 +102,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQq-XN-u6C">
-                                                    <rect key="frame" x="227" y="0.0" width="163" height="64"/>
+                                                    <rect key="frame" x="239" y="0.0" width="175" height="64"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwr-WY-igv" customClass="RegularButton" customModule="PredictionMachine" customModuleProvider="target">
-                                                            <rect key="frame" x="49.666666666666686" y="0.0" width="64" height="64"/>
+                                                            <rect key="frame" x="55.5" y="0.0" width="64" height="64"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="uwr-WY-igv" secondAttribute="height" multiplier="1:1" id="PBr-S7-xuV"/>
                                                             </constraints>
@@ -150,6 +150,33 @@
                                             <outlet property="visitorBackground" destination="aqJ-k7-w0D" id="s0b-SN-KBG"/>
                                             <outlet property="visitorButton" destination="uCC-a5-jpm" id="LYW-2y-6bk"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ResetCellId" id="sdE-yE-lki" customClass="ResetCell" customModule="PredictionMachine" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="154" width="414" height="64.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sdE-yE-lki" id="3jR-tm-YgI">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfa-75-Er3" customClass="RegularButton" customModule="PredictionMachine" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="64" id="4Ku-1R-cMf"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="Reset All Games"/>
+                                                    <connections>
+                                                        <action selector="resetAllTapped:" destination="sdE-yE-lki" eventType="touchUpInside" id="9sw-CD-gt9"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Xfa-75-Er3" firstAttribute="top" secondItem="3jR-tm-YgI" secondAttribute="top" id="FLx-9j-xm7"/>
+                                                <constraint firstAttribute="trailing" secondItem="Xfa-75-Er3" secondAttribute="trailing" id="mAn-Kk-3ux"/>
+                                                <constraint firstItem="Xfa-75-Er3" firstAttribute="leading" secondItem="3jR-tm-YgI" secondAttribute="leading" id="p3h-ph-ieJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="Xfa-75-Er3" secondAttribute="bottom" id="sQz-hf-oOk"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
